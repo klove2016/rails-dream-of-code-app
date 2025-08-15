@@ -38,5 +38,3 @@ group :development, :test do
   gem 'rspec-rails', '~> 7.0.0'
   gem 'faker'
 end
-
-
