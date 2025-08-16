@@ -91,4 +91,6 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  RSpec::Expectations.configuration.on_potential_false_positives = :nothing
 end

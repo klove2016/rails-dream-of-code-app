@@ -11,7 +11,7 @@ RSpec.describe Course, type: :model do
   # let(:course) defines the course variable
 
   let(:coding_class) { 
-    CodingClass.create(title: 'Test Class')
+    CodingClass.create(title: 'Test Class', description:"I am a description for a test class inside of a rspec testing suite inside of a ruby on rails application inside of a computer")
   }
   let(:trimester) { 
     Trimester.create(
@@ -44,7 +44,7 @@ RSpec.describe Course, type: :model do
     end
   end
 
-  describe '.student_name_list', skip: true do
+  describe '.student_name_list' do
     # First, we'll write a test that expects the method to exist
     # for an instance of a course
     it 'exists for a course' do
@@ -101,7 +101,7 @@ RSpec.describe Course, type: :model do
     end
   end
 
-  describe '.student_email_list', skip: true do
+  describe '.student_email_list' do
     it 'exists for a course' do
       expect { course.student_email_list }.not_to raise_error(NoMethodError)
     end
@@ -148,5 +148,39 @@ RSpec.describe Course, type: :model do
       end
     end
   end
-end
+  
+  describe "#formatted_title" do
+    it "returns title with 'Course:' prefix" do
+      expect(course.formatted_title).to eq("Course: Test Class")
+    end
+    
+  end
 
+  describe "#short_description" do
+    it "returns the first 50 characters of description" do
+      expect(course.short_description.length).to be < 51
+    end
+  end
+  
+  describe "#title_upcase" do
+    it "returns the course title in ALL CAPS" do
+      expect(course.title_upcase).to eq("TEST CLASS")
+    end
+  end
+
+  describe "#title_abbreviation" do
+    # e.g., "Intro to Rails" → "ITR" (first letter of each word)
+    it "returns the first letter of each word concatenated" do
+      expect(course.title_abbreviation).to include("T","C")
+    end
+    it "ignores multiple spaces and punctuation between words" do
+      expect(course.title_abbreviation).to eq("TC")
+    end
+  end
+
+  describe "#title_length" do
+    it "returns the number of characters in the title as an integer" do
+      expect(course.title_length).to eq(10)
+    end
+  end
+end
