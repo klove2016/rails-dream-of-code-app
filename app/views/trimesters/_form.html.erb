@@ -1,0 +1,28 @@
+<%= form_with model: @trimester, local: true do |f| %>
+  <div>
+    <%= f.label :term %><br>
+    <%= f.text_field :term %>
+  </div>
+
+  <div>
+    <%= f.label :year %><br>
+    <%= f.text_field :year %>
+  </div>
+
+  <div>
+    <%= f.label :start_date %><br>
+    <%= f.date_select :start_date %>
+  </div>
+
+  <div>
+    <%= f.label :end_date %><br>
+    <%= f.date_select :end_date %>
+  </div>
+
+  <div>
+    <%= f.label :application_deadline %><br>
+    <%= f.date_select :application_deadline %>
+  </div>
+
+  <%= f.submit %>
+<% end %>
